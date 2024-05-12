@@ -1,41 +1,57 @@
-ユーザー管理機能 (users)
----------------------
-- user_id (PK)
-- nickname
-- email
-- password
-- encrypted_password
-- last_name
-- first_name
-- birthdate
+# テーブル設計
 
-商品出品機能 (lists)
----------------------
-- list_id (PK)
-- user_id (FK)
-- title
-- description
-- details
-  - category
-  - status
-- shipping_details
-  - charge
-  - Region
-  - date
-- price
+## Usersテーブル
+|Column            |Type  |Options                 |
+|------------------|------|------------------------|
+|nickname          |string|null: false             |
+|email             |string|null: false,unique: true|
+|password          |string|null: false             |
+|last_name         |string|null: false,VARCHAR(100)|
+|first_name        |string|null: false,VARCHAR(100)|
+|birthdate         |string|null: false             |
 
-商品購入機能 (orders)
----------------------
-- order_id (PK)
-- list_id (FK)
-- user_id (FK)
-- credit_card_number
-- expiration_date
-- security_code
-- address
-- postal_code
-- prefecture
-- city
-- street_address
-- building_name
-- phone_number
+### Association
+- has_many :item
+- has_many :order
+- belongs_to :address
+
+## Itemsテーブル
+|Column               |Type  |Options                 |
+|---------------------|------|------------------------|
+|title                |text  |null: false             |
+|description          |text  |null: false             |
+|detail_id            |string|null: false             |
+|region_id            |string|null: false             |
+|date                 |string|null: false             |
+|price                |string|null: false             |
+
+### Association
+- belongs_to :order
+- belongs_to :user
+- belongs_to :address
+
+## Ordersテーブル
+|Column            |Type  |Options                 |
+|------------------|------|------------------------|
+|user_id           |string|null: false             |
+
+### Association
+- belongs_to :item
+- belongs_to :user
+- belongs_to :address
+
+## Addressesテーブル
+|Column            |Type  |Options                 |
+|------------------|------|------------------------|
+|address           |string|null: false             |
+|postal_code       |string|null: false             |
+|prefecture        |string|null: false             |
+|city              |string|null: false             |
+|street_address    |string|null: true              |
+|building_name     |string|null: false             |
+|phone_number      |string|null: false             |
+
+### Association
+- has_many :users
+- belongs_to:item
+- belongs_to :order
