@@ -48,7 +48,6 @@
 |Column            |Type      |Options                        |
 |------------------|----------|-------------------------------|
 |postal_code       |string    |null: false                    |
-|genre_id          |integer   |null: false                    |
 |origin_region_id  |string    |null: false                    |
 |city              |string    |null: false                    |
 |house_number      |string    |null: false                    |
