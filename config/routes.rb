@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/users/sign_up', to: 'devise/registrations#new'
   resources :users, only: [:index, :new]
 
-  resource :items
+  resources :items, only: [:new, :create, :index, :show]
+
   root 'items#index'
 end

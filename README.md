@@ -22,10 +22,10 @@
 |title             |string    |null: false                  | 商品名カラム
 |description       |text      |null: false                  | 商品の説明カラム
 |category_id       |integer   |null: false                  | カテゴリーカラム
-|product_status_id |integer   |null: false                  | 商品の状態カラム
-|shopping_charge_id|integer   |null: false                  | 配送料の負担カラム
-|origin_region_id  |integer   |null: false                  | 発送元の地域カラム
-|days_to_ship_id   |integer   |null: false                  | 発送までの日数カラム
+|condition_id      |integer   |null: false                  | 商品の状態カラム
+|shipping_fee_id   |integer   |null: false                  | 配送料の負担カラム
+|prefecture_id     |integer   |null: false                  | 発送元の地域カラム
+|shipping_time_id  |integer   |null: false                  | 発送までの日数カラム
 |price             |integer   |null: false                  | 価格カラム
 |user              |references|null: false,foreign_key: true| ユーザーカラム
 
