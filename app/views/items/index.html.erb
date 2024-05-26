@@ -166,9 +166,15 @@
   </div>
 
 </div>
+<<<<<<< Updated upstream
   <%= link_to new_item_path, class: 'purchase-btn' do %>
     <span class='purchase-btn-text'>出品する</span>
     <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
+=======
+<%= link_to(new_item_path, class: 'price-btn') do %>
+  <span class='price-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "price-btn-icon" %>
+>>>>>>> Stashed changes
 <% end %>
 <%= render "shared/footer" %>
