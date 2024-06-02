@@ -5,6 +5,8 @@ class OrderForm
   validates :token, :postal_code, :prefecture_id, :city, :address, :phone_number, :user_id, :item_id, presence: true
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "must be in the format XXX-XXXX" }
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'must be 10 or 11 digits' }
+  validates :prefecture_id, numericality: { other_than: 1, message: 'must be selected' }
+
 
   def save
     return false unless valid?

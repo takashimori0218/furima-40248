@@ -7,6 +7,11 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image, class: "item-box-img" %>
+        <% if @item.sold_out? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+        <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -20,9 +25,6 @@
 <% if user_signed_in? %>
   <% unless @item.order.present? %>
     <% if @item.user_id == current_user.id %>
-          <div class="sold-out">
-            <span>Sold Out!!</span>
-          </div>
       <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
       <p class="or-text"></p>
       <%= link_to "削除", item_path(@item), data: { turbo_method: :delete }, class: "item-destroy" %>
