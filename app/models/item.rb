@@ -9,6 +9,12 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  has_one :order
+
+  def sold_out?
+    order.present?
+  end
+
   validates :title, presence: true
   validates :description, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1 }
