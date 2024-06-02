@@ -13,6 +13,11 @@ RSpec.describe OrderForm, type: :model do
       it '必要な情報を適切に入力して「購入」ボタンを押すと、商品の購入ができる' do
         expect(@order_form).to be_valid
       end
+
+      it '建物名がなくても保存できる' do
+        @order_form.building = ''
+        expect(@order_form).to be_valid
+      end
     end
 
     context '商品購入がうまくいかないとき' do
@@ -28,8 +33,8 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include('Postal code must be in the format XXX-XXXX')
       end
 
-      it '都道府県が空だと購入できない' do
-        @order_form.prefecture_id = nil
+      it '都道府県が「---」を選択されていると購入できない' do
+        @order_form.prefecture_id = 1
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -74,6 +79,18 @@ RSpec.describe OrderForm, type: :model do
         @order_form.token = ''
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Token can't be blank")
+      end
+      
+      it 'user_idが空だと購入できない' do
+        @order_form.user_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空だと購入できない' do
+        @order_form.item_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
